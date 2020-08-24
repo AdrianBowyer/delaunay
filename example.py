@@ -15,12 +15,12 @@ for x, y in zip(xs, ys):
 
 XS, YS, TS = DT.export()
 
-print xs
-print ys
+print(xs)
+print(ys)
 
-#print XS
-#print YS
-#print TS
+#print(XS)
+#print(YS)
+#print(TS)
 
 """
 Creating and plotting unstructured triangular grids.
@@ -41,7 +41,7 @@ ax.margins(0.1)
 ax.set_aspect('equal')
 ax.triplot(triang, 'bo-')
 
-ax.triplot(tri.Triangulation(XS, YS, TS), 'ro--')
+#ax.triplot(tri.Triangulation(XS, YS, TS), 'ro--')
 ax.set_title('triplot of Delaunay triangulation')
 
 
@@ -93,7 +93,7 @@ tt = [(5,4,0),
 
 
 
-ax.triplot(tri.Triangulation(xx, yy, tt), 'go--')
+#ax.triplot(tri.Triangulation(xx, yy, tt), 'go--')
 
 plt.show()
 

@@ -61,10 +61,10 @@ class Point:
 
         r2 = 0.25*dot(a, a)*dot(b,b)*dot(a-b, a-b)/dot(z, z)
 
-        #print "IsInC"
-        #print self, p0
-        #print sqrt(r2), "\n"
-        #print 
+        #print("IsInC")
+        #print(self, p0)
+        #print(sqrt(r2), "\n")
+        #print() 
 
         return dot(self-p0, self-p0) <= r2
 
@@ -108,10 +108,10 @@ class Triangle:
             if edge[0] == temp_v[i] and edge[1] == temp_v[i+1]:
                 self.neighbour[(i+2)%3] = T
                 return
-        print 'This function should never get this far'
-        print edge
-        print temp_v
-        print T
+        print('This function should never get this far')
+        print(edge)
+        print(temp_v)
+        print(T)
 
     #def RightOf(self, T):
     #    ''' Find the neighbour that is right of (ccw) neighbour T'''
