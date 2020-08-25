@@ -123,6 +123,18 @@ class Triangle:
     #    
     #    return self.neighbour[(self.neighbour.index(T) - 1) % 3]
 
+    def CircumCentre(self):
+
+        a = self.v[0] - self.v[2]
+        b = self.v[1] - self.v[2]
+
+        # Ref: https://en.wikipedia.org/wiki/Circumscribed_circle#Circumcircle_equations
+        z = cross(a,b)
+        p0 = cross(dot(a,a)*b-dot(b,b)*a, z)*(0.5/dot(z,z)) + self.v[2]
+
+        #r2 = 0.25*dot(a, a)*dot(b,b)*dot(a-b, a-b)/dot(z, z)
+
+        return p0
 
 class Delaunay_Triangulation:
     """Bowyer Watson"""
@@ -214,6 +226,18 @@ class Delaunay_Triangulation:
                 edge = (edge + 1) % 3
 
         return boundary[:-1]
+
+    def GetVoronoiEdges(self):
+     eList = []
+     for t in self.triangles:
+      p0 = t.CircumCentre()
+      if t.neighbour[0] is not None:
+       eList.append([p0,t.neighbour[0].CircumCentre()])
+      if t.neighbour[1] is not None:
+       eList.append([p0,t.neighbour[1].CircumCentre()])
+      if t.neighbour[2] is not None:
+       eList.append([p0,t.neighbour[2].CircumCentre()])
+     return eList
 
     def export(self):
 

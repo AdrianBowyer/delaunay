@@ -4,7 +4,7 @@ from math import ceil, sqrt, log, floor
 import delaunay as D
 
 seed(4)
-n = 20
+n = 40
 xs = [randint(1, 98) for x in range(n)]
 ys = [randint(1, 98) for x in range(n)]
 zs = [0 for x in range(n)]
@@ -15,12 +15,15 @@ for x, y in zip(xs, ys):
 
 XS, YS, TS = DT.export()
 
-print(xs)
-print(ys)
+#print(xs)
+#print(ys)
 
 #print(XS)
+#print()
 #print(YS)
+#print()
 #print(TS)
+#print()
 
 """
 Creating and plotting unstructured triangular grids.
@@ -39,61 +42,24 @@ triang = tri.Triangulation(xs, ys)
 fig, ax = plt.subplots()
 ax.margins(0.1)
 ax.set_aspect('equal')
-ax.triplot(triang, 'bo-')
+#ax.triplot(triang, 'b-')
 
-#ax.triplot(tri.Triangulation(XS, YS, TS), 'ro--')
+#ax.triplot(tri.Triangulation(XS, YS, TS), 'r-')
+'''for triangle in TS:
+ t = D.Triangle(D.Point(XS[triangle[0]], YS[triangle[0]]), D.Point(XS[triangle[1]], YS[triangle[1]]), 
+  D.Point(XS[triangle[2]], YS[triangle[2]]))
+ p = t.CircumCentre()
+ print(p)'''
+eList = DT.GetVoronoiEdges()
+for e in eList:
+ if e[0].x > 0 and e[0].x < 100 and e[1].x > 0 and e[1].x < 100 and e[0].y > 0 and e[0].y < 100 and e[1].y > 0 and e[1].y < 100:
+  plt.plot((e[0].x, e[1].x), (e[0].y, e[1].y), 'b')
+#plt.plot((0,99),(0,99), 'b-')
+#ax.triplot(lines.Line2D((0,99),(0,99)))
 ax.set_title('triplot of Delaunay triangulation')
 
-
-xx = [0, 99, 99, 0] + xs
-yy = [0, 0, 99, 99] + ys
-
-tt = [(5,4,0),
-(5,0,3),
-(8,5,3),
-(9,1,0),
-(10,2,1),
-(13,0,4),
-(13,4,9),
-(14,9,4),
-(14,6,11),
-(14,11,12),
-(15,9,0),
-(15,0,13),
-(15,13,9),
-(16,3,2),
-(16,8,3),
-(17,7,5),
-(17,5,8),
-(17,8,16),
-(17,16,7),
-(18,4,5),
-(18,5,6),
-(18,6,14),
-(18,14,4),
-(19,1,9),
-(19,9,14),
-(19,14,12),
-(19,12,10),
-(19,10,1),
-(20,16,2),
-(20,2,10),
-(21,11,10),
-(21,10,12),
-(21,12,11),
-(22,6,16),
-(22,16,20),
-(22,20,10),
-(22,10,11),
-(22,11,6),
-(23,6,5),
-(23,5,7),
-(23,7,16),
-(23,16,6)]
-
-
-
-#ax.triplot(tri.Triangulation(xx, yy, tt), 'go--')
-
 plt.show()
+
+
+
 
